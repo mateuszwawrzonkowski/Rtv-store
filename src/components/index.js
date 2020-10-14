@@ -1,4 +1,10 @@
 export { default as Cart } from './Cart';
 export { default as Navigation } from './Navigation';
 export { default as ProductDetails } from './ProductDetails';
+export { default as ProductsMenu } from './ProductsMenu';
 export { default as Products } from './Products';
+export { default as Default } from './Default';
+export { default as Shops } from './Shops';
+export { default as Contact } from './Contact';
+export { default as Header } from './Header';
+export { default as SearchInput } from './SearchInput';

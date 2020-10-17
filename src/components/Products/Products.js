@@ -3,14 +3,30 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 
-const ProductsWrapper = styled.div`
+import CardProduct from 'components/CardProduct';
 
+const ProductsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
 `;
 
 const Products = ({ products }) => {
   const { productId } = useParams();
 
-  const productsCards = products.map((product) => <div key={product.id}>product</div>);
+  const productsCards = products.map(({
+    id, category, model, price, description, available,
+  }) => (
+    <CardProduct
+      key={id}
+      category={category}
+      model={model}
+      price={price}
+      description={description}
+      available={available}
+    />
+  ));
 
   return (
     <ProductsWrapper>

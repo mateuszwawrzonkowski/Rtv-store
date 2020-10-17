@@ -19,13 +19,6 @@ justify-content: space-around;
 flex-grow: 1;
 `;
 
-const ProductsWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-basis: 90%;
-  margin-top: 30px;
-`;
-
 const LinkStyled = styled(Link)`
   color: black;
   text-decoration: none;
@@ -43,16 +36,14 @@ const ProductsMenu = () => {
           <LinkStyled to="/products/soundbars">Soundbars</LinkStyled>
           <LinkStyled to={`${url}/phones`}>Phones</LinkStyled>
         </MenuWrapper>
-        <ProductsWrapper>
-          <Switch>
-            <Route exact path={path}>
-              <Products />
-            </Route>
-            <Route path={`${path}/:productId`}>
-              <Products />
-            </Route>
-          </Switch>
-        </ProductsWrapper>
+        <Switch>
+          <Route exact path={path}>
+            <Products />
+          </Route>
+          <Route path={`${path}/:productId`}>
+            <Products />
+          </Route>
+        </Switch>
       </Wrapper>
     </>
 

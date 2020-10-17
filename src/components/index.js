@@ -8,3 +8,5 @@ export { default as Shops } from './Shops';
 export { default as Contact } from './Contact';
 export { default as Header } from './Header';
 export { default as SearchInput } from './SearchInput';
+export { default as CardProduct } from './CardProduct';
+export { default as Map } from './Map';

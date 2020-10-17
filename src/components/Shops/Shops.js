@@ -1,7 +1,8 @@
 import React from 'react';
+import Map from 'components/Map';
 
 const Shops = () => (
-  <div>shops</div>
+  <Map />
 );
 
 export default Shops;

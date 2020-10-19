@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import styled from 'styled-components';
 
@@ -42,7 +43,27 @@ const StyledLink = styled(Link)`
         text-decoration: none;
     }
 `;
-const Header = () => (
+
+const CartIcon = styled.div`
+  position: relative;
+
+  div{
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 100%;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    background-color: #df0000;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+`;
+const Header = ({ cartAmount }) => (
   <HeaderWrapper>
     <StyledLink to="/">
       <ShopName>RTVMedia</ShopName>
@@ -50,10 +71,22 @@ const Header = () => (
     <IconsWrapper>
       <i className="fas fa-user" />
       <StyledLink to="/cart">
+        { cartAmount > 0 && (
+          <CartIcon>
+            <div>
+              {cartAmount}
+            </div>
+          </CartIcon>
+        )}
         <i className="fas fa-shopping-cart" />
       </StyledLink>
     </IconsWrapper>
     <SearchInput />
   </HeaderWrapper>
 );
-export default Header;
+
+const mapStateToProps = (state) => ({
+  cartAmount: state.products.cartAmount,
+});
+
+export default connect(mapStateToProps)(Header);

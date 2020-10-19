@@ -27,6 +27,7 @@ const DescriptionWrapper = styled.div`
 `;
 const Price = styled.h2`
   font-size: 3rem;
+  align-self: center;
 `;
 const ListElement = styled.li`
   &::before{
@@ -52,7 +53,7 @@ const CardProduct = ({
     <DescriptionWrapper>
       <SpecificationWrapper>
         <Price>
-          {price}
+          {`${price} zł`}
         </Price>
         <ul style={{ listStyle: 'none' }}>
           <ListElement>

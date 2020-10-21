@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { addToCart } from 'actions';
 
 const ProductCardWrapper = styled.div`
   display: flex;
@@ -44,7 +46,7 @@ const AddToCartButton = styled.button`
 `;
 
 const CardProduct = ({
-  category, model, price, description, available,
+  id, category, model, price, description, available, addToCart,
 }) => (
   <ProductCardWrapper>
     <ImageWrapper>
@@ -73,12 +75,15 @@ const CardProduct = ({
           </ListElement>
         </ul>
       </SpecificationWrapper>
-      <AddToCartButton disabled={!available}>
+      <AddToCartButton onClick={() => addToCart(id, category)} disabled={!available}>
         Add to cart
       </AddToCartButton>
     </DescriptionWrapper>
-
   </ProductCardWrapper>
 );
 
-export default CardProduct;
+const mapDispatchToProps = (dispatch) => ({
+  addToCart: (id, category) => dispatch(addToCart(id, category)),
+});
+
+export default connect(null, mapDispatchToProps)(CardProduct);

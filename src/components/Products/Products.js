@@ -20,6 +20,7 @@ const Products = ({ products }) => {
   }) => (
     <CardProduct
       key={id}
+      id={id}
       category={category}
       model={model}
       price={price}

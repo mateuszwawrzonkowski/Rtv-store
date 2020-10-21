@@ -15,3 +15,10 @@ export const increaseProduct = (id, inCart) => ({
     inCart,
   },
 });
+
+export const addToCart = (id) => ({
+  type: actionTypes.ADD_TO_CART,
+  payload: {
+    id,
+  },
+});

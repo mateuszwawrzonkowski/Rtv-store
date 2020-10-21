@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 import * as actionType from 'actions/actionTypes';
 
 const initialState = {
@@ -102,7 +103,17 @@ const initialState = {
       price: 700,
       description: '55 inches tv',
       available: 2,
-      inCart: 0,
+      inCart: 1,
+    },
+    {
+      id: 4,
+      category: 'tv',
+      brand: 'SONY',
+      model: 'KDL-XF9005',
+      price: 500,
+      description: '85 inches tv',
+      available: 3,
+
     },
   ],
   cartAmount: 0,
@@ -130,6 +141,10 @@ const productsReducer = (state = initialState, action) => {
             : { ...item }
         )),
         cartAmount: state.cartAmount += 1,
+      };
+    case (actionType.ADD_TO_CART):
+      return {
+        ...state,
       };
     default:
       return state;

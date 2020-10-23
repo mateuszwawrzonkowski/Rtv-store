@@ -113,7 +113,7 @@ const initialState = {
       price: 500,
       description: '85 inches tv',
       available: 3,
-
+      inCart: 1,
     },
   ],
   cartAmount: 0,
@@ -122,16 +122,6 @@ const initialState = {
 
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case (actionType.DECREASE_PRODUCT):
-      return {
-        ...state,
-        cart: state.cart.map((item) => (
-          (item.id === action.payload.id) && item.inCart > 0
-            ? { ...item, inCart: item.inCart -= 1 }
-            : { ...item }
-        )),
-        cartAmount: state.cartAmount > 0 && state.cartAmount - 1,
-      };
     case (actionType.INCREASE_PRODUCT):
       return {
         ...state,
@@ -142,10 +132,39 @@ const productsReducer = (state = initialState, action) => {
         )),
         cartAmount: state.cartAmount += 1,
       };
+
+    case (actionType.DECREASE_PRODUCT):
+      return {
+        ...state,
+        cart: state.cart.map((item) => (
+          (item.id === action.payload.id) && item.inCart > 0
+            ? { ...item, inCart: item.inCart -= 1 }
+            : { ...item }
+        )),
+        cartAmount: state.cartAmount > 0 && state.cartAmount - 1,
+      };
+
     case (actionType.ADD_TO_CART):
       return {
         ...state,
+        cart: state.cart.push(),
       };
+
+    case (actionType.REMOVE_FROM_CART):
+      let itemAmount = 0;
+      state.cart.forEach((item) => {
+        if (item.id === action.payload.id) {
+          itemAmount = item.inCart;
+        }
+      });
+      return {
+        ...state,
+        cart: state.cart.filter((item) => (
+          item.id !== action.payload.id
+        )),
+        cartAmount: state.cartAmount - itemAmount,
+      };
+
     default:
       return state;
   }

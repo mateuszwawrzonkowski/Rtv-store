@@ -22,3 +22,11 @@ export const addToCart = (id) => ({
     id,
   },
 });
+
+export const removeFromCart = (id, inCart) => ({
+  type: actionTypes.REMOVE_FROM_CART,
+  payload: {
+    id,
+    inCart,
+  },
+});

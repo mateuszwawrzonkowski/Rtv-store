@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import { addToCart } from 'actions';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const ProductCardWrapper = styled.div`
   display: flex;
@@ -85,5 +86,15 @@ const CardProduct = ({
 const mapDispatchToProps = (dispatch) => ({
   addToCart: (id, category) => dispatch(addToCart(id, category)),
 });
+
+CardProduct.propTypes = {
+  id: PropTypes.number.isRequired,
+  category: PropTypes.string.isRequired,
+  model: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  available: PropTypes.bool.isRequired,
+  addToCart: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(CardProduct);

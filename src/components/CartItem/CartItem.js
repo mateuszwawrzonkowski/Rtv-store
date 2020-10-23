@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { decreaseProduct, increaseProduct } from 'actions';
+import { decreaseProduct, increaseProduct, removeFromCart } from 'actions';
 
 const CartWrapper = styled.div`
     height: 168px;
@@ -53,12 +53,19 @@ const Price = styled.span`
   align-self: flex-start;
   padding-right: 10px;
 `;
+
+const RemoveButton = styled.button`
+
+`;
 const CartItem = ({
-  id, category, model, brand, price, inCart, decrease, increase,
+  id, category, model, brand, price, inCart, decrease, increase, removeFromCart,
 }) => (
   <CartWrapper>
     <Head>
       {`${category.charAt(0).toUpperCase() + category.slice(1)} ${brand} ${model}`}
+      <RemoveButton onClick={() => removeFromCart(id, inCart)}>
+        X
+      </RemoveButton>
     </Head>
     <Bottom>
       <Price>
@@ -77,6 +84,7 @@ const CartItem = ({
 const mapDispatchToProps = (dispatch) => ({
   decrease: (id, inCart) => dispatch(decreaseProduct(id, inCart)),
   increase: (id, inCart) => dispatch(increaseProduct(id, inCart)),
+  removeFromCart: (id, inCart) => dispatch(removeFromCart(id, inCart)),
 });
 
 export default connect(null, mapDispatchToProps)(CartItem);

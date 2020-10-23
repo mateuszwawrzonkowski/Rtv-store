@@ -46,7 +46,7 @@ const AddToCartButton = styled.button`
 `;
 
 const CardProduct = ({
-  id, category, model, price, description, available, addToCart,
+  id, category, brand, model, price, description, available, addToCart,
 }) => (
   <ProductCardWrapper>
     <ImageWrapper>
@@ -58,6 +58,11 @@ const CardProduct = ({
           {`${price} zł`}
         </Price>
         <ul style={{ listStyle: 'none' }}>
+          <ListElement>
+            Brand:
+            {' '}
+            {brand}
+          </ListElement>
           <ListElement>
             Model:
             {' '}
@@ -75,7 +80,7 @@ const CardProduct = ({
           </ListElement>
         </ul>
       </SpecificationWrapper>
-      <AddToCartButton onClick={() => addToCart(id, category)} disabled={!available}>
+      <AddToCartButton onClick={() => addToCart(id, category, brand, model, price, description)} disabled={!available}>
         Add to cart
       </AddToCartButton>
     </DescriptionWrapper>
@@ -83,7 +88,7 @@ const CardProduct = ({
 );
 
 const mapDispatchToProps = (dispatch) => ({
-  addToCart: (id, category) => dispatch(addToCart(id, category)),
+  addToCart: (id, category, brand, model, price, description) => dispatch(addToCart(id, category, brand, model, price, description)),
 });
 
 export default connect(null, mapDispatchToProps)(CardProduct);

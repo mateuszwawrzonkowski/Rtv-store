@@ -16,12 +16,13 @@ const Products = ({ products }) => {
   const { productId } = useParams();
 
   const productsCards = products.map(({
-    id, category, model, price, description, available,
+    id, category, brand, model, price, description, available,
   }) => (
     <CardProduct
       key={id}
       id={id}
       category={category}
+      brand={brand}
       model={model}
       price={price}
       description={description}

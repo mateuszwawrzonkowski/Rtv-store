@@ -145,6 +145,15 @@ const productsReducer = (state = initialState, action) => {
     case (actionType.ADD_TO_CART):
       return {
         ...state,
+        cart: [
+          ...state.cart,
+          {
+            ...action.payload,
+            available: 3,
+            inCart: 1,
+          },
+        ],
+        cartAmount: state.cartAmount += 1,
       };
     default:
       return state;

@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import { addToCart } from 'actions';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const ProductCardWrapper = styled.div`
   display: flex;
@@ -42,7 +43,8 @@ const AddToCartButton = styled.button`
   color:white;
   border: none;
   height: 25px;
-  border-radius: 5px;
+  border-radius: 5px; 
+  cursor: pointer;
 `;
 
 const CardProduct = ({
@@ -80,7 +82,10 @@ const CardProduct = ({
           </ListElement>
         </ul>
       </SpecificationWrapper>
-      <AddToCartButton onClick={() => addToCart(id, category, brand, model, price, description)} disabled={!available}>
+      <AddToCartButton
+        onClick={() => addToCart(id, category, brand, model, price, description, available)}
+        disabled={!available}
+      >
         Add to cart
       </AddToCartButton>
     </DescriptionWrapper>
@@ -88,7 +93,20 @@ const CardProduct = ({
 );
 
 const mapDispatchToProps = (dispatch) => ({
-  addToCart: (id, category, brand, model, price, description) => dispatch(addToCart(id, category, brand, model, price, description)),
+  addToCart: (id, category, brand, model, price, description, available) => dispatch(addToCart(
+    id, category, brand, model, price, description, available,
+  )),
 });
+
+CardProduct.propTypes = {
+  id: PropTypes.number.isRequired,
+  category: PropTypes.string.isRequired,
+  brand: PropTypes.string.isRequired,
+  model: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  available: PropTypes.number.isRequired,
+  addToCart: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(CardProduct);

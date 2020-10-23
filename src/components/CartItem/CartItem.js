@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { decreaseProduct, increaseProduct } from 'actions';
+import { decreaseProduct, increaseProduct, removeFromCart } from 'actions';
+import PropTypes from 'prop-types';
 
 const CartWrapper = styled.div`
+    position: relative;
     height: 168px;
     display: flex;
     flex-direction: column;
@@ -53,12 +55,44 @@ const Price = styled.span`
   align-self: flex-start;
   padding-right: 10px;
 `;
+
+const RemoveButton = styled.button`
+  position: absolute;
+  top:5px;
+  right: 5px;
+  height: 15px;
+  width: 15px;
+  margin-left: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+
+  div{
+   height:20px;
+   width:2px;
+    background-color: black;
+    transform: rotate(45deg);
+ 
+    :after{
+      content:'';
+      position: absolute;
+      background-color: black;
+      height: 20px;
+      width: 2px;
+      transform: translate(-50%) rotate(90deg);
+    }
+  }
+`;
 const CartItem = ({
-  id, category, model, brand, price, inCart, decrease, increase,
+  id, category, model, brand, price, inCart, decrease, increase, removeFromCart,
 }) => (
   <CartWrapper>
     <Head>
       {`${category.charAt(0).toUpperCase() + category.slice(1)} ${brand} ${model}`}
+      <RemoveButton onClick={() => removeFromCart(id, inCart)}>
+        <div />
+      </RemoveButton>
     </Head>
     <Bottom>
       <Price>
@@ -77,6 +111,19 @@ const CartItem = ({
 const mapDispatchToProps = (dispatch) => ({
   decrease: (id, inCart) => dispatch(decreaseProduct(id, inCart)),
   increase: (id, inCart) => dispatch(increaseProduct(id, inCart)),
+  removeFromCart: (id, inCart) => dispatch(removeFromCart(id, inCart)),
 });
+
+CartItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  category: PropTypes.string.isRequired,
+  model: PropTypes.string.isRequired,
+  brand: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  inCart: PropTypes.number.isRequired,
+  decrease: PropTypes.func.isRequired,
+  increase: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(CartItem);

@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 
 const Cart = ({ cart }) => {
   const cartItems = cart.map(({
-    id, model, brand, price, available, inCart, category,
+    id, model, brand, price, available, inCart, category, img,
   }) => (
     <CartItem
       key={id}
@@ -29,6 +29,7 @@ const Cart = ({ cart }) => {
       price={price}
       available={available}
       inCart={inCart}
+      imgSrc={img}
     />
   ));
 

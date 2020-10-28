@@ -17,7 +17,7 @@ const Products = ({ products }) => {
   const { productId } = useParams();
 
   const productsCards = products.map(({
-    id, category, brand, model, price, description, available,
+    id, category, brand, model, price, description, available, img,
   }) => (
     <CardProduct
       key={id}
@@ -28,6 +28,7 @@ const Products = ({ products }) => {
       price={price}
       description={description}
       available={available}
+      imgSrc={img}
     />
   ));
 

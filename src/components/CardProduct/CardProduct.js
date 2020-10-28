@@ -10,14 +10,18 @@ const ProductCardWrapper = styled.div`
   flex-wrap:wrap;
   flex-grow: 1;
   width: 95%;
-  /* padding: 10px; */
   margin: 10px;
+  background-color: white;
 `;
 const ImageWrapper = styled.div`
+  display: flex;
+  align-items: center;
   height:150px;
   width: 150px;
   background-color: gray;
-  /* margin-right: 10px; */
+  img{
+    width: 100%;
+  }
 `;
 const SpecificationWrapper = styled.div`
   display: flex;
@@ -43,16 +47,15 @@ const AddToCartButton = styled.button`
   color:white;
   border: none;
   height: 25px;
-  border-radius: 5px; 
-  cursor: pointer;
+  border-radius: 5px;
 `;
 
 const CardProduct = ({
-  id, category, brand, model, price, description, available, addToCart,
+  id, category, brand, model, price, description, available, addToCart, imgSrc,
 }) => (
   <ProductCardWrapper>
     <ImageWrapper>
-      <img src="" alt="" />
+      <img src={imgSrc} alt="" />
     </ImageWrapper>
     <DescriptionWrapper>
       <SpecificationWrapper>
@@ -83,7 +86,7 @@ const CardProduct = ({
         </ul>
       </SpecificationWrapper>
       <AddToCartButton
-        onClick={() => addToCart(id, category, brand, model, price, description, available)}
+        onClick={() => addToCart(id, category, brand, model, price, description, available, imgSrc)}
         disabled={!available}
       >
         Add to cart
@@ -93,8 +96,8 @@ const CardProduct = ({
 );
 
 const mapDispatchToProps = (dispatch) => ({
-  addToCart: (id, category, brand, model, price, description, available) => dispatch(addToCart(
-    id, category, brand, model, price, description, available,
+  addToCart: (id, category, brand, model, price, description, available, img) => dispatch(addToCart(
+    id, category, brand, model, price, description, available, img,
   )),
 });
 
@@ -104,9 +107,14 @@ CardProduct.propTypes = {
   brand: PropTypes.string.isRequired,
   model: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  imgSrc: PropTypes.string,
   description: PropTypes.string.isRequired,
   available: PropTypes.number.isRequired,
   addToCart: PropTypes.func.isRequired,
+};
+
+CardProduct.defaultProps = {
+  imgSrc: '',
 };
 
 export default connect(null, mapDispatchToProps)(CardProduct);

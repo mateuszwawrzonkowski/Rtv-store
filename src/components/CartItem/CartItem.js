@@ -6,20 +6,31 @@ import PropTypes from 'prop-types';
 
 const CartWrapper = styled.div`
     position: relative;
-    height: 168px;
+    height: 128px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     width: 90%;
+    max-width: 290px;
     border: 1px solid #DDD;
     font-size: 1.4rem;
+    margin-bottom: 20px;
+    background-color: white;
 `;
 
 const Head = styled.div`
-    margin-top: 10px;
-    font-size: 1.7rem;
-    
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    height: 80px;
+`;
+
+const Image = styled.img`
+    max-width: 72px;
+    max-height: 60px;
 `;
 
 const Bottom = styled.div`
@@ -48,56 +59,54 @@ const Amount = styled.span`
 `;
 
 const ItemSum = styled.span`
-  align-self: flex-start;
+  align-self: center;
   margin-left: 50px;
-`;
-const Price = styled.span`
-  align-self: flex-start;
-  padding-right: 10px;
+  font-size: 2.4rem;
+  font-weight: bold;
 `;
 
 const RemoveButton = styled.button`
   position: absolute;
-  top:5px;
-  right: 5px;
+  top: 5px;
+  right: 10px;
   height: 15px;
-  width: 15px;
-  margin-left: 10px;
   background-color: transparent;
   border: none;
   cursor: pointer;
   outline: none;
 
   div{
-   height:20px;
-   width:2px;
-    background-color: black;
+    height:15px;
+    width:2px;
+    background-color:#df0000;
     transform: rotate(45deg);
  
     :after{
       content:'';
       position: absolute;
-      background-color: black;
-      height: 20px;
+      background-color:#df0000;
+      height: 15px;
       width: 2px;
       transform: translate(-50%) rotate(90deg);
     }
   }
 `;
+
 const CartItem = ({
   id, category, model, brand, price, inCart, decrease, increase, removeFromCart,
+  imgSrc,
 }) => (
   <CartWrapper>
     <Head>
-      {`${category.charAt(0).toUpperCase() + category.slice(1)} ${brand} ${model}`}
-      <RemoveButton onClick={() => removeFromCart(id, inCart)}>
-        <div />
-      </RemoveButton>
+      <Image src={imgSrc} />
+      <p>
+        {`${category.charAt(0).toUpperCase() + category.slice(1)} ${brand} ${model}`}
+      </p>
     </Head>
+    <RemoveButton onClick={() => removeFromCart(id, inCart)}>
+      <div />
+    </RemoveButton>
     <Bottom>
-      <Price>
-        {`${price} zł`}
-      </Price>
       <Button type="submit" onClick={() => decrease(id, inCart)}>-</Button>
       <Amount>{inCart}</Amount>
       <Button type="submit" onClick={() => increase(id, inCart)}>+</Button>
@@ -120,6 +129,7 @@ CartItem.propTypes = {
   model: PropTypes.string.isRequired,
   brand: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  imgSrc: PropTypes.string.isRequired,
   inCart: PropTypes.number.isRequired,
   decrease: PropTypes.func.isRequired,
   increase: PropTypes.func.isRequired,

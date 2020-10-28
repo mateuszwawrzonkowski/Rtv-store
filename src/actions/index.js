@@ -16,7 +16,7 @@ export const increaseProduct = (id, inCart) => ({
   },
 });
 
-export const addToCart = (id, category, brand, model, price, description, available) => ({
+export const addToCart = (id, category, brand, model, price, description, available, img) => ({
   type: actionTypes.ADD_TO_CART,
   payload: {
     id,
@@ -26,6 +26,7 @@ export const addToCart = (id, category, brand, model, price, description, availa
     price,
     description,
     available,
+    img,
   },
 });
 

@@ -5,7 +5,7 @@ import {
   Map, TileLayer, Marker, Popup,
 } from 'react-leaflet';
 import styled from 'styled-components';
-import mapMarker from 'assets/map-marker-alt-solid.svg';
+import mapMarker from 'assets/icons/map-marker-alt-solid.svg';
 
 const mapMarkerIcon = new Icon({
   iconUrl: mapMarker,

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import searchIcon from 'assets/search-solid.svg';
+import searchIcon from 'assets/icons/search-solid.svg';
 
 const Input = styled.input`
     flex-basis: 95%;

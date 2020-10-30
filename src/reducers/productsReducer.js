@@ -131,7 +131,6 @@ const initialState = {
   ],
   cart: [
   ],
-  cartAmount: 0,
   cartTotal: 0,
 };
 
@@ -147,7 +146,6 @@ const productsReducer = (state = initialState, action) => {
             ? { ...item, inCart: item.inCart += 1 }
             : { ...item }
         )),
-        cartAmount: state.cartAmount += 1,
       };
 
     case (actionType.DECREASE_PRODUCT):
@@ -158,7 +156,6 @@ const productsReducer = (state = initialState, action) => {
             ? { ...item, inCart: item.inCart -= 1 }
             : { ...item }
         )),
-        cartAmount: state.cartAmount > 0 && state.cartAmount - 1,
       };
 
     case (actionType.ADD_TO_CART):
@@ -172,7 +169,6 @@ const productsReducer = (state = initialState, action) => {
                 inCart: item.inCart += 1,
               } : { ...item }
           )),
-          cartAmount: itemExist ? state.cartAmount += 1 : state.cartAmount,
         };
       }
       return {
@@ -185,22 +181,14 @@ const productsReducer = (state = initialState, action) => {
             inCart: 1,
           },
         ],
-        cartAmount: state.cartAmount += 1,
       };
 
     case (actionType.REMOVE_FROM_CART): {
-      let itemAmount = 0;
-      state.cart.forEach((item) => {
-        if (item.id === action.payload.id) {
-          itemAmount = item.inCart;
-        }
-      });
       return {
         ...state,
         cart: state.cart.filter((item) => (
           item.id !== action.payload.id
         )),
-        cartAmount: state.cartAmount - itemAmount,
       }; }
 
     default:

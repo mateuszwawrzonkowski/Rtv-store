@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 
@@ -63,30 +64,51 @@ const CartIcon = styled.div`
     font-weight: 700;
   }
 `;
-const Header = ({ cartAmount }) => (
-  <HeaderWrapper>
-    <StyledLink to="/">
-      <ShopName>RTVMedia</ShopName>
-    </StyledLink>
-    <IconsWrapper>
-      <i className="fas fa-user" />
-      <StyledLink to="/cart">
-        { cartAmount > 0 && (
+const Header = ({ cart }) => {
+  const cartAmount = cart.reduce((accum, curVal) => accum + curVal.inCart, 0);
+
+  return (
+    <HeaderWrapper>
+      <StyledLink to="/">
+        <ShopName>RTVMedia</ShopName>
+      </StyledLink>
+      <IconsWrapper>
+        <i className="fas fa-user" />
+        <StyledLink to="/cart">
+          { cartAmount > 0 && (
           <CartIcon>
             <div>
               {cartAmount}
             </div>
           </CartIcon>
-        )}
-        <i className="fas fa-shopping-cart" />
-      </StyledLink>
-    </IconsWrapper>
-    <SearchInput />
-  </HeaderWrapper>
-);
+          )}
+          <i className="fas fa-shopping-cart" />
+        </StyledLink>
+      </IconsWrapper>
+      <SearchInput />
+    </HeaderWrapper>
+  );
+};
 
 const mapStateToProps = (state) => ({
   cartAmount: state.products.cartAmount,
+  cart: state.products.cart,
 });
+
+Header.propTypes = {
+  cart: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    model: PropTypes.string,
+    brand: PropTypes.string,
+    price: PropTypes.number,
+    available: PropTypes.number,
+    inCart: PropTypes.number,
+    category: PropTypes.string,
+  })),
+};
+
+Header.defaultProps = {
+  cart: [],
+};
 
 export default connect(mapStateToProps)(Header);

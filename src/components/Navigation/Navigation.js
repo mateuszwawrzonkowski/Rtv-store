@@ -36,6 +36,7 @@ const NavLinks = links.map((link) => (
   link.to === '/products'
     ? (
       <LinkStyled
+        key={link.title}
         to={link.to}
         activeStyle={{
           color: '#DF0000',
@@ -50,6 +51,7 @@ const NavLinks = links.map((link) => (
     )
     : (
       <LinkStyled
+        key={link.title}
         to={link.to}
         activeStyle={{
           color: '#DF0000',

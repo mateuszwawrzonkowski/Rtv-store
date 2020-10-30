@@ -1,7 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import styled from 'styled-components';
+
+const links = [
+  {
+    title: 'products',
+    to: '/products',
+  },
+  {
+    title: 'shops',
+    to: '/shops',
+  },
+  {
+    title: 'contact',
+    to: '/contact',
+  },
+];
 
 const NavigationWrapper = styled.nav`
   display: flex;
@@ -9,38 +24,47 @@ const NavigationWrapper = styled.nav`
   padding: 20px;
 `;
 
-const LinkStyled = styled(Link)`
+const LinkStyled = styled(NavLink)`
     color: #000;
     text-transform: capitalize;
     font-weight: 600;
     text-decoration: none;
     border-bottom: 2px solid transparent;
-
-    &:focus, &:hover, &:visited, &:link, &:active {
-        text-decoration: none;
-    }
-    
-    &:hover{
-      color: #DF0000;
-      border-bottom: 2px solid #DF0000;
-    }
 `;
+
+const NavLinks = links.map((link) => (
+  link.to === '/products'
+    ? (
+      <LinkStyled
+        to={link.to}
+        activeStyle={{
+          color: '#DF0000',
+          borderBottom: ' 2px solid #DF0000',
+        }}
+      >
+        <div>
+          <i className="fas fa-bars" style={{ margin: '0 5px 0 0' }} />
+          {link.title}
+        </div>
+      </LinkStyled>
+    )
+    : (
+      <LinkStyled
+        to={link.to}
+        activeStyle={{
+          color: '#DF0000',
+          borderBottom: ' 2px solid #DF0000',
+        }}
+      >
+        {link.title}
+      </LinkStyled>
+    )
+));
 
 const Navigation = () => (
   <>
     <NavigationWrapper>
-      <LinkStyled to="/products">
-        <div>
-          <i className="fas fa-bars" style={{ margin: '0 5px 0 0' }} />
-          products
-        </div>
-      </LinkStyled>
-      <LinkStyled to="/shops">
-        shops
-      </LinkStyled>
-      <LinkStyled to="/contact">
-        contact
-      </LinkStyled>
+      {NavLinks}
     </NavigationWrapper>
   </>
 );

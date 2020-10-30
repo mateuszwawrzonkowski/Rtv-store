@@ -14,8 +14,6 @@ const ProductsWrapper = styled.div`
 `;
 
 const Products = ({ products }) => {
-  const { productId } = useParams();
-
   const productsCards = products.map(({
     id, category, brand, model, price, description, available, img,
   }) => (
@@ -34,7 +32,6 @@ const Products = ({ products }) => {
 
   return (
     <ProductsWrapper>
-      {productId}
       {productsCards}
     </ProductsWrapper>
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { NavLink, useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const LinkStyled = styled(Link)`
+const LinkStyled = styled(NavLink)`
   color: black;
   text-decoration: none;
 `;
@@ -14,6 +14,8 @@ const FilterProductsLink = ({ filter, children }) => {
     <>
       <LinkStyled
         to={filter === 'products' ? '/products' : `${url}/${filter}`}
+        activeStyle={{ borderBottom: '1px solid red' }}
+        exact={filter === 'products'}
       >
         {children}
       </LinkStyled>

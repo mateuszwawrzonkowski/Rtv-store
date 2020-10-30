@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import GlobalStyle from 'theme/globalStyle';
 
 import {
-  Header, Navigation, ProductsMenu, Cart, Shops, Contact, Default,
+  Home, Header, Navigation, ProductsMenu, Cart, Shops, Contact, Default,
 } from 'components';
 import store from 'store';
 
@@ -21,7 +21,7 @@ function App() {
           <Header />
           <Navigation />
           <Switch>
-            <Route exact path="/" component={ProductsMenu} />
+            <Route exact path="/" component={Home} />
             <Route path="/products" component={ProductsMenu} />
             <Route path="/cart" component={Cart} />
             <Route path="/shops" component={Shops} />

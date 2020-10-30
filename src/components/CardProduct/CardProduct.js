@@ -11,14 +11,17 @@ const ProductCardWrapper = styled.div`
   flex-grow: 1;
   width: 95%;
   margin: 10px;
-  background-color: white;
+  background-color:white;
+  border: 1px solid #E9E9E9;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.07);
 `;
 const ImageWrapper = styled.div`
   display: flex;
   align-items: center;
   height:150px;
   width: 150px;
-  background-color: gray;
+  background-color: white;
+  margin: 5px 0;
   img{
     width: 100%;
   }
@@ -48,6 +51,7 @@ const AddToCartButton = styled.button`
   border: none;
   height: 25px;
   border-radius: 5px;
+  margin: 10px 0;
 `;
 
 const CardProduct = ({

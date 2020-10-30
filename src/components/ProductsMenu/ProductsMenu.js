@@ -1,10 +1,11 @@
 import React from 'react';
 import Products from 'components/Products';
+import { FilterProductsLink } from 'components';
 
 import styled from 'styled-components';
 
 import {
-  Link, useRouteMatch, Route, Switch,
+  useRouteMatch, Route, Switch,
 } from 'react-router-dom';
 
 const Wrapper = styled.div`
@@ -19,28 +20,20 @@ justify-content: space-around;
 flex-grow: 1;
 `;
 
-const LinkStyled = styled(Link)`
-  color: black;
-  text-decoration: none;
-`;
-
 const ProductsMenu = () => {
-  const { path, url } = useRouteMatch();
+  const { path } = useRouteMatch();
 
   return (
     <>
       <Wrapper>
         <MenuWrapper>
-          <LinkStyled to="/products">All products</LinkStyled>
-          <LinkStyled to="/products/tv">TVs</LinkStyled>
-          <LinkStyled to="/products/soundbars">Soundbars</LinkStyled>
-          <LinkStyled to={`${url}/phones`}>Phones</LinkStyled>
+          <FilterProductsLink filter="products">All products</FilterProductsLink>
+          <FilterProductsLink filter="tv">TVs</FilterProductsLink>
+          <FilterProductsLink filter="soundbar">Soundbars</FilterProductsLink>
+          <FilterProductsLink filter="smartphone">Phones</FilterProductsLink>
         </MenuWrapper>
         <Switch>
-          <Route exact path={path}>
-            <Products />
-          </Route>
-          <Route path={`${path}/:productId`}>
+          <Route path={`${path}/:productId?`}>
             <Products />
           </Route>
         </Switch>

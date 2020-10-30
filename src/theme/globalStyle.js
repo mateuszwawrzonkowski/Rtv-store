@@ -17,6 +17,7 @@ html{
 
 body{
     font-size: 1.6rem;
+    background-color: #F6F6F9;
 }
 
 a{

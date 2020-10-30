@@ -7,3 +7,7 @@ export { default as iPhoneXS } from './productsImages/iPhoneXS.jpg';
 export { default as LG43LM6300PLA } from './productsImages/LG43LM6300PLA.jpg';
 export { default as LG32LM6300PLA } from './productsImages/LG32LM6300PLA.jpg';
 export { default as SAMSUNGGALAXYNOTE10 } from './productsImages/SAMSUNGGALAXYNOTE10.jpg';
+export { default as HTZF9 } from './productsImages/HTZF9.jpg';
+export { default as HWT450 } from './productsImages/HWT450.jpg';
+
+export { default as promotion1 } from './promotions/promotion1.jpg';

@@ -2,7 +2,7 @@
 import * as actionType from 'actions/actionTypes';
 import {
   SONY65XH9005, SONY50WF660, SONY49XH8096, SONY43XG8096, iPhone11Pro,
-  iPhoneXS, LG43LM6300PLA, LG32LM6300PLA, SAMSUNGGALAXYNOTE10,
+  iPhoneXS, LG43LM6300PLA, LG32LM6300PLA, SAMSUNGGALAXYNOTE10, HTZF9, HWT450,
 } from 'assets';
 
 const initialState = {
@@ -107,6 +107,27 @@ const initialState = {
       available: 2,
       img: SAMSUNGGALAXYNOTE10,
     },
+    {
+      id: 11,
+      category: 'soundbar',
+      brand: 'SONY',
+      model: 'HT-ZF9',
+      price: 2599,
+      description: 'Sony soundbar 3.1',
+      available: 3,
+      img: HTZF9,
+    },
+    {
+      id: 12,
+      category: 'soundbar',
+      brand: 'SAMSUNG',
+      model: 'HW-T450',
+      price: 3099,
+      description: 'Samsung soundbar 2.0',
+      available: 2,
+      img: HWT450,
+    },
+
   ],
   cart: [
   ],
